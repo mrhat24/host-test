@@ -1,0 +1,24 @@
+basePath: /
+definitions: {}
+info:
+    description: 'Simple blog REST API'
+    license:
+        name: MIT
+    title: Blog
+    version: 1.0.0
+paths:
+    /blog:
+        get:
+            operationId: BlogServiceGet
+            produces:
+                - text/html
+            responses:
+                '204':
+                    description: 'No content'
+            description: ""
+            parameters: []
+swagger: '2.0'
+securityDefinitions:
+    basicAuth:
+        type: basic
+host: 'localhost:3000'

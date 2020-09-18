@@ -1,7 +1,6 @@
 import {evninronment} from "./env";
 import app from "./app";
 
-
 const PORT = evninronment.port;
 
 app.listen(PORT, () => {
