@@ -1,3 +1,0 @@
-describe('blog create test', () => {
-
-});

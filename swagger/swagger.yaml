@@ -1,5 +1,74 @@
-basePath: /
-definitions: {}
+basePath: ./
+definitions:
+    IBlog:
+        description: ""
+        properties:
+            title:
+                type: string
+                description: ""
+            author:
+                type: string
+                description: ""
+            content:
+                type: string
+                description: ""
+            date:
+                type: string
+                format: date-time
+                description: ""
+            commentIds:
+                type: array
+                items:
+                    type: number
+                    format: double
+                description: ""
+        type: object
+        required:
+            - title
+            - author
+            - content
+            - date
+            - commentIds
+    BlogCreator:
+        description: ""
+        properties:
+            title:
+                type: string
+                description: ""
+            author:
+                type: string
+                description: ""
+            content:
+                type: string
+                description: ""
+        type: object
+        required:
+            - title
+            - author
+            - content
+    BlogUpdater:
+        description: ""
+        properties:
+            title:
+                type: string
+                description: ""
+            author:
+                type: string
+                description: ""
+            content:
+                type: string
+                description: ""
+            date:
+                type: string
+                format: date-time
+                description: ""
+            commentIds:
+                type: array
+                items:
+                    type: number
+                    format: double
+                description: ""
+        type: object
 info:
     description: 'Simple blog REST API'
     license:
@@ -8,15 +77,61 @@ info:
     version: 1.0.0
 paths:
     /blog:
-        get:
-            operationId: BlogServiceGet
+        post:
+            operationId: BlogServiceCreate
             produces:
-                - text/html
+                - application/json
             responses:
-                '204':
-                    description: 'No content'
+                '200':
+                    description: Ok
+                    schema:
+                        $ref: '#/definitions/IBlog'
             description: ""
-            parameters: []
+            security:
+                -
+                    default:
+                        - basicAuth
+            consumes:
+                - application/json
+            parameters:
+                -
+                    description: ""
+                    in: body
+                    name: blog
+                    required: true
+                    schema:
+                        $ref: '#/definitions/BlogCreator'
+    '/blog/{id}':
+        put:
+            operationId: BlogServiceUpdate
+            produces:
+                - application/json
+            responses:
+                '200':
+                    description: Ok
+                    schema:
+                        $ref: '#/definitions/IBlog'
+            description: ""
+            security:
+                -
+                    default:
+                        - basicAuth
+            consumes:
+                - application/json
+            parameters:
+                -
+                    description: ""
+                    in: body
+                    name: blog
+                    required: true
+                    schema:
+                        $ref: '#/definitions/BlogUpdater'
+                -
+                    description: ""
+                    in: path
+                    name: id
+                    required: true
+                    type: string
 swagger: '2.0'
 securityDefinitions:
     basicAuth:

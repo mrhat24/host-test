@@ -8,7 +8,13 @@ const blogSchema = new Schema({
     commentIds: [Number],
 });
 
-export interface IBlog extends Document {
+export interface BlogCreator {
+    title: string;
+    author: string;
+    content: string;
+}
+
+export interface IBlog extends BlogCreator {
     title: string;
     author: string;
     content: string;
@@ -16,4 +22,12 @@ export interface IBlog extends Document {
     commentIds: number[];
 }
 
-export const Blog = model<IBlog>('Blog', blogSchema);
+export interface BlogUpdater {
+    title?: string;
+    author?: string;
+    content?: string;
+    date?: Date;
+    commentIds?: number[];
+}
+
+export const Blog = model<IBlog & Document>('Blog', blogSchema);

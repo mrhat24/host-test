@@ -10,10 +10,12 @@
   "license": "MIT",
   "dependencies": {
     "@types/check-types": "7.3.1",
+    "@types/faker": "^5.1.0",
     "@types/jest": "26.0.14",
     "@types/mongoose": "5.7.36",
     "@types/supertest": "2.0.10",
     "check-types": "11.1.2",
+    "faker": "^5.1.0",
     "jest": "26.4.2",
     "mongoose": "5.10.5",
     "supertest": "4.0.2",

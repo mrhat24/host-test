@@ -1,13 +1,13 @@
 {
     "swagger": {
         "outputDirectory": "./swagger",
-        "entryFile": "./src/routes.ts",
+        "entryFile": "./src/router.ts",
         "host": "localhost:3000",
         "version": "1.0.0",
         "name": "Blog",
         "description": "Simple blog REST API",
         "license": "",
-        "basePath": "/",
+        "basePath": "./",
         "securityDefinitions": {
             "basicAuth": {
                 "type": "basic"
