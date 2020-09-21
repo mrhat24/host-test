@@ -30,9 +30,9 @@ export class CommentService {
     }
 
     @GET
-    @Path('/blog/:blogId/comment')
+    @Path('/blog/:blogId/comments')
     @Security('basicAuth')
-    public async list(commentIds: string[], @PathParam('blogId') blogId: string): Promise<IComment[]> {
+    public async list(@ContextRequest commentIds: string[], @PathParam('blogId') blogId: string): Promise<IComment[]> {
         const comments = await Comment.find({_id: {$in: commentIds}});
         return comments;
     }

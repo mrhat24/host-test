@@ -12,6 +12,7 @@ const blogController = new BlogController();
 const commentController = new CommentController();
 export const appRouter = (app: Express) => {
     app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+    app.get('/', (req, res) => res.send('Blog Rest API Service'));
 
     /* comment */
     app.post(Routes.crateComment, [authMiddleware, blogCommentMiddleware], commentController.create);

@@ -29,7 +29,7 @@ export class BlogService {
     }
 
     @GET
-    @Path('/blog')
+    @Path('/blogs')
     public async list(): Promise<IBlog[]> {
         const list = await Blog.find();
         return list;

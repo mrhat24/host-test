@@ -3,7 +3,6 @@ services:
   mongodb:
     image: mongo:4.4.1-bionic
     container_name: "mongodb"
-    restart: always
     environment:
       - MONGO_DATA_DIR=/data/db
       - MONGO_LOG_DIR=/dev/null
@@ -11,17 +10,7 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=password
       - MONGO_INITDB_DATABASE=project
     volumes:
-      - ./data/db_dev:/data/db
+      - ./data/db:/data/db
     ports:
       - 27017:27017
-  service:
-    build: .
-    container_name: blogService
-    restart: always
-    environment:
-      - APP_PORT=3000
-      - MONGO_URL=mongodb://admin:password@mongodb:27017/app?authSource=admin
-    ports:
-      - 3000:3000
-    links:
-      - mongodb
+

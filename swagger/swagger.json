@@ -114,6 +114,16 @@
 			"required": [
 				"message"
 			]
+		},
+		"CommentUpdater": {
+			"description": "",
+			"properties": {
+				"message": {
+					"type": "string",
+					"description": ""
+				}
+			},
+			"type": "object"
 		}
 	},
 	"info": {
@@ -290,6 +300,129 @@
 							"$ref": "#/definitions/CommentCreator"
 						}
 					},
+					{
+						"description": "",
+						"in": "path",
+						"name": "blogId",
+						"required": true,
+						"type": "string"
+					}
+				]
+			}
+		},
+		"/blog/{blogId}/comment/{id}": {
+			"delete": {
+				"operationId": "CommentServiceDelete",
+				"produces": [
+					"text/html"
+				],
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"description": "",
+				"security": [
+					{
+						"default": [
+							"basicAuth"
+						]
+					}
+				],
+				"parameters": [
+					{
+						"description": "",
+						"in": "path",
+						"name": "blogId",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"description": "",
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"type": "string"
+					}
+				]
+			},
+			"put": {
+				"operationId": "CommentServiceUpdate",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/IComment"
+						}
+					}
+				},
+				"description": "",
+				"security": [
+					{
+						"default": [
+							"basicAuth"
+						]
+					}
+				],
+				"consumes": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"description": "",
+						"in": "body",
+						"name": "commentUpdater",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/CommentUpdater"
+						}
+					},
+					{
+						"description": "",
+						"in": "path",
+						"name": "blogId",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"description": "",
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"type": "string"
+					}
+				]
+			}
+		},
+		"/blog/{blogId}/comments": {
+			"get": {
+				"operationId": "CommentServiceList",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/IComment"
+							}
+						}
+					}
+				},
+				"description": "",
+				"security": [
+					{
+						"default": [
+							"basicAuth"
+						]
+					}
+				],
+				"parameters": [
 					{
 						"description": "",
 						"in": "path",
