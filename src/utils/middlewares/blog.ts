@@ -1,5 +1,5 @@
 import {Types} from "mongoose";
-import {Blog, iBlog} from "../../models";
+import {Blog, ormBlog} from "../../models";
 import {getLogin} from "./auth";
 import {NextFunction, Request, Response} from "express";
 
@@ -50,6 +50,6 @@ export const blogCommentMiddleware = async (req: Request, res: Response, next: N
     next();
 }
 
-export const getBlog = (body: any): iBlog => {
+export const getBlog = (body: any): ormBlog => {
     return body[blogMiddlewareParam];
 }

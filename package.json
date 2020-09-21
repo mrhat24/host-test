@@ -6,7 +6,11 @@
     "start": "nodemon src/index.ts",
     "build": "tsc",
     "swagger:gen": "swaggerGen -c ./swaggerConfig.json",
-    "test": "jest"
+    "test": "jest",
+    "docker:dev:up": "cd dev && docker-compose up -d",
+    "docker:dev:down": "cd dev && docker-compose down",
+    "docker:prod:up": "docker-compose up -d",
+    "docker:prod:down": "docker-compose down"
   },
   "license": "MIT",
   "dependencies": {

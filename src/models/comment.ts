@@ -22,6 +22,6 @@ export interface CommentUpdater {
     message?: string;
 }
 
-export type iComment = IComment & Document;
+export type ormComment = IComment & Document;
 
-export const Comment = model<iComment>('Comment', commentSchema);
+export const Comment = model<ormComment>('Comment', commentSchema);

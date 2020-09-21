@@ -1,4 +1,4 @@
-import {Blog, CommentCreator, iComment} from "../../../models";
+import {Blog, CommentCreator, ormComment} from "../../../models";
 import faker from "faker";
 import {request} from "../helpers/supertest";
 import {getApiUrl, Routes} from "../../../routes";
@@ -19,7 +19,7 @@ describe('comment create', () => {
             .send(commentCreator);
 
         expect(response.status).toBe(201);
-        const comment: iComment = response.body;
+        const comment: ormComment = response.body;
         expect(comment.message).toEqual(commentCreator.message);
 
         const changedBlog = await Blog.findById({_id: blog.id});

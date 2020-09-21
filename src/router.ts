@@ -4,9 +4,9 @@ import * as swaggerDocument from '../swagger/swagger.json';
 import {BlogController} from "./controllers/blogController";
 import {Routes} from "./routes";
 import {Express} from "express";
-import {blogCommentMiddleware, blogEditMiddleware} from "./utils/middlewares/blogEdit";
+import {blogCommentMiddleware, blogEditMiddleware} from "./utils/middlewares/blog";
 import {CommentController} from "./controllers/commentController";
-import {commentEditMiddleware} from "./utils/middlewares/commentEdit";
+import {commentEditMiddleware} from "./utils/middlewares/comment";
 
 const blogController = new BlogController();
 const commentController = new CommentController();

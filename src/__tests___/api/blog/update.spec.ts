@@ -1,6 +1,6 @@
 import {request} from "../helpers/supertest";
 import {Routes} from "../../../routes";
-import {Blog, BlogUpdater, iBlog} from "../../../models";
+import {Blog, BlogUpdater, ormBlog} from "../../../models";
 import faker from 'faker';
 import {getAuth} from "../helpers/auth";
 import {adminUser, managerUser} from "../../../users";
@@ -24,7 +24,7 @@ describe('blog update', () => {
             .set(getAuth())
             .send(blogUpdater);
         expect(response.status).toBe(201);
-        const updatedBlog: iBlog = response.body;
+        const updatedBlog: ormBlog = response.body;
         expect(updatedBlog.title).toEqual(blogUpdater.title);
         expect(updatedBlog._id).toEqual(blog._id.toString());
         expect(updatedBlog.content).toEqual(blogUpdater.content);

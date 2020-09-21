@@ -1,10 +1,9 @@
 import {request} from "../helpers/supertest";
 import {Routes} from "../../../routes";
-import {Blog, BlogUpdater, iBlog} from "../../../models";
+import {Blog} from "../../../models";
 import faker from 'faker';
 import {getAuth} from "../helpers/auth";
-import {adminUser, managerUser} from "../../../users";
-import {db} from "../../../db";
+import {adminUser} from "../../../users";
 import {Types} from "mongoose";
 
 describe('blog delete', () => {

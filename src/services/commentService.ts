@@ -1,5 +1,5 @@
 import {ContextRequest, DELETE, GET, Path, PathParam, POST, PUT, Security} from "typescript-rest";
-import {Blog, Comment, CommentCreator, CommentUpdater, IComment} from "../models";
+import {Comment, CommentCreator, CommentUpdater, IComment} from "../models";
 
 @Path('')
 export class CommentService {

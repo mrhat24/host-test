@@ -25,6 +25,6 @@ export interface BlogUpdater {
     content?: string;
 }
 
-export type iBlog = IBlog & Document;
+export type ormBlog = IBlog & Document;
 
-export const Blog = model<iBlog>('Blog', blogSchema);
+export const Blog = model<ormBlog>('Blog', blogSchema);

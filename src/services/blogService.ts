@@ -1,4 +1,4 @@
-import {Blog, BlogCreator, BlogUpdater, IBlog, iBlog} from "../models";
+import {Blog, BlogCreator, BlogUpdater, IBlog} from "../models";
 import {ContextRequest, DELETE, GET, Path, PathParam, POST, PUT, Security} from "typescript-rest";
 
 @Path('')

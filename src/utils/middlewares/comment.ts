@@ -1,6 +1,6 @@
 import {NextFunction, Request, Response} from "express";
 import {Types} from "mongoose";
-import {Comment, iComment} from "../../models";
+import {Comment, ormComment} from "../../models";
 import {getLogin} from "./auth";
 
 const commentMiddlewareParam = '__comment';
@@ -32,6 +32,6 @@ export const commentEditMiddleware = async (req: Request, res: Response, next: N
     next();
 };
 
-export const getComment = (body: any): iComment => {
+export const getComment = (body: any): ormComment => {
     return body[commentMiddlewareParam];
 }

@@ -4,8 +4,8 @@ import {validate} from "../utils/validation";
 import check from "check-types";
 import {getLogin} from "../utils/middlewares/auth";
 import {CommentService} from "../services/commentService";
-import {getBlog} from "../utils/middlewares/blogEdit";
-import {getComment} from "../utils/middlewares/commentEdit";
+import {getBlog} from "../utils/middlewares/blog";
+import {getComment} from "../utils/middlewares/comment";
 
 const commentService = new CommentService();
 

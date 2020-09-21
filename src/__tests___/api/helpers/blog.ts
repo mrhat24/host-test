@@ -1,8 +1,8 @@
-import {Blog, BlogCreator, iBlog} from "../../../models";
+import {Blog, BlogCreator, ormBlog} from "../../../models";
 import faker from "faker";
 import {adminUser} from "../../../users";
 
-export const createBlog = async (): Promise<iBlog> => {
+export const createBlog = async (): Promise<ormBlog> => {
     const blogCreator: BlogCreator = {
         content: faker.lorem.text(200),
         title: faker.lorem.words(4)
