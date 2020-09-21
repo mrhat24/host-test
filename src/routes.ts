@@ -5,8 +5,16 @@ export enum Routes {
     deleteBlog = '/blog/:id',
     getBlogList = '/blogs',
 
-    crateComment = '/comment',
-    updateComment = '/comment/:id',
-    deleteComment = '/comment/:id',
-    getCommentsByBlog = '/comments/:blogId',
+    crateComment = '/blog/:blogId/comment',
+    updateComment = '/blog/:blogId/comment/:id',
+    deleteComment = '/blog/:blogId/comment/:id',
+    getCommentsByBlog = '/blog/:blogId/comments',
+}
+
+export const getApiUrl = (apiUrl: string, params: {[key: string]: any} = {}): string => {
+    let replacedUrl = apiUrl;
+    for (const key in params) {
+        replacedUrl = replacedUrl.replace(':' + key, params[key]);
+    }
+    return replacedUrl;
 }

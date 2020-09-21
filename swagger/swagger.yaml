@@ -1,15 +1,12 @@
-basePath: ./
+basePath: /
 definitions:
     IBlog:
         description: ""
         properties:
-            title:
+            _id:
                 type: string
                 description: ""
             author:
-                type: string
-                description: ""
-            content:
                 type: string
                 description: ""
             date:
@@ -19,23 +16,25 @@ definitions:
             commentIds:
                 type: array
                 items:
-                    type: number
-                    format: double
+                    type: string
+                description: ""
+            title:
+                type: string
+                description: ""
+            content:
+                type: string
                 description: ""
         type: object
         required:
-            - title
             - author
-            - content
             - date
             - commentIds
+            - title
+            - content
     BlogCreator:
         description: ""
         properties:
             title:
-                type: string
-                description: ""
-            author:
                 type: string
                 description: ""
             content:
@@ -44,7 +43,6 @@ definitions:
         type: object
         required:
             - title
-            - author
             - content
     BlogUpdater:
         description: ""
@@ -52,23 +50,40 @@ definitions:
             title:
                 type: string
                 description: ""
+            content:
+                type: string
+                description: ""
+        type: object
+    IComment:
+        description: ""
+        properties:
+            _id:
+                type: string
+                description: ""
             author:
                 type: string
                 description: ""
-            content:
+            message:
                 type: string
                 description: ""
             date:
                 type: string
                 format: date-time
                 description: ""
-            commentIds:
-                type: array
-                items:
-                    type: number
-                    format: double
+        type: object
+        required:
+            - author
+            - message
+            - date
+    CommentCreator:
+        description: ""
+        properties:
+            message:
+                type: string
                 description: ""
         type: object
+        required:
+            - message
 info:
     description: 'Simple blog REST API'
     license:
@@ -101,6 +116,19 @@ paths:
                     required: true
                     schema:
                         $ref: '#/definitions/BlogCreator'
+        get:
+            operationId: BlogServiceList
+            produces:
+                - application/json
+            responses:
+                '200':
+                    description: Ok
+                    schema:
+                        type: array
+                        items:
+                            $ref: '#/definitions/IBlog'
+            description: ""
+            parameters: []
     '/blog/{id}':
         put:
             operationId: BlogServiceUpdate
@@ -130,6 +158,56 @@ paths:
                     description: ""
                     in: path
                     name: id
+                    required: true
+                    type: string
+        delete:
+            operationId: BlogServiceDelete
+            produces:
+                - text/html
+            responses:
+                '204':
+                    description: 'No content'
+            description: ""
+            security:
+                -
+                    default:
+                        - basicAuth
+            parameters:
+                -
+                    description: ""
+                    in: path
+                    name: id
+                    required: true
+                    type: string
+    '/blog/{blogId}/comment':
+        post:
+            operationId: CommentServiceCreate
+            produces:
+                - application/json
+            responses:
+                '200':
+                    description: Ok
+                    schema:
+                        $ref: '#/definitions/IComment'
+            description: ""
+            security:
+                -
+                    default:
+                        - basicAuth
+            consumes:
+                - application/json
+            parameters:
+                -
+                    description: ""
+                    in: body
+                    name: commentCreator
+                    required: true
+                    schema:
+                        $ref: '#/definitions/CommentCreator'
+                -
+                    description: ""
+                    in: path
+                    name: blogId
                     required: true
                     type: string
 swagger: '2.0'

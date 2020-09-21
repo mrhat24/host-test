@@ -1,5 +1,6 @@
-import {adminUser} from "../../../users";
-export const getAdminAuth = () => {
-    const auth = Buffer.from(`${adminUser.login}:${adminUser.password}`).toString('base64');
+import {adminUser, User} from "../../../users";
+
+export const getAuth = (user: User = adminUser) => {
+    const auth = Buffer.from(`${user.login}:${user.password}`).toString('base64');
     return {authorization: "Basic " + auth}
 };

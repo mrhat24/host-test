@@ -6,10 +6,22 @@ const commentSchema = new Schema({
     date: { type: Date, default: Date.now },
 });
 
-export interface IComment extends Document {
+export interface CommentCreator {
+    message: string;
+}
+
+export interface IComment {
+    _id?: string;
     author: string;
     message: string;
     date: Date;
 }
 
-export const Comment = model<IComment>('Comment', commentSchema);
+
+export interface CommentUpdater {
+    message?: string;
+}
+
+export type iComment = IComment & Document;
+
+export const Comment = model<iComment>('Comment', commentSchema);

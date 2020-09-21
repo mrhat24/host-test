@@ -7,7 +7,7 @@
         "name": "Blog",
         "description": "Simple blog REST API",
         "license": "",
-        "basePath": "./",
+        "basePath": "/",
         "securityDefinitions": {
             "basicAuth": {
                 "type": "basic"

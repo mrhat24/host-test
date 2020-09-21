@@ -5,29 +5,26 @@ const blogSchema = new Schema({
     author: String,
     content: String,
     date: { type: Date, default: Date.now },
-    commentIds: [Number],
+    commentIds: [String],
 });
 
 export interface BlogCreator {
     title: string;
-    author: string;
     content: string;
 }
 
 export interface IBlog extends BlogCreator {
-    title: string;
+    _id?: string;
     author: string;
-    content: string;
     date: Date;
-    commentIds: number[];
+    commentIds: string[];
 }
 
 export interface BlogUpdater {
     title?: string;
-    author?: string;
     content?: string;
-    date?: Date;
-    commentIds?: number[];
 }
 
-export const Blog = model<IBlog & Document>('Blog', blogSchema);
+export type iBlog = IBlog & Document;
+
+export const Blog = model<iBlog>('Blog', blogSchema);

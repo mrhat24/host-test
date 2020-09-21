@@ -1,6 +1,9 @@
-import {adminUser} from "../users";
+import {users} from "../../users";
+import {Request, Response, NextFunction} from 'express';
 
-export const authMiddleware = function (req, res, next) {
+const loginParamName = '__login';
+
+export const authMiddleware = function (req: Request, res: Response, next: NextFunction) {
     const authHeader = req.headers.authorization;
     if (!authHeader) {
         res.setHeader('WWW-Authenticate', 'Basic');
@@ -11,11 +14,16 @@ export const authMiddleware = function (req, res, next) {
     const auth = Buffer.from(authData, 'base64').toString().split(':');
     const login = auth[0];
     const pass = auth[1];
-    if (login == adminUser.login && pass == adminUser.password) {
+    const user = users.find(u => u.login === login);
+    if (user && login == user.login && pass == user.password) {
+        req.body[loginParamName] = login;
         next(); // authorized
     } else {
         res.setHeader('WWW-Authenticate', 'Basic');
         res.status(401).send('You are not authenticated!');
     }
-    next();
 };
+
+export const getLogin = (body: any): string => {
+    return body[loginParamName];
+}
