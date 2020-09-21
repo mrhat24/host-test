@@ -5,7 +5,7 @@
         "host": "localhost:3000",
         "version": "1.0.0",
         "name": "Blog",
-        "description": "Simple blog REST API",
+        "description": "Simple blog REST API, \bBase auth: admin:password",
         "license": "",
         "basePath": "/",
         "securityDefinitions": {
