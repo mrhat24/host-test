@@ -1,24 +1,10 @@
-import {db} from "../../../db";
 import {request} from "../helpers/supertest";
 import {getApiUrl, Routes} from "../../../routes";
-import {getAuth} from "../helpers/auth";
 import {createBlogAndComment} from "../helpers/comment";
 import {Types} from "mongoose";
-import {managerUser} from "../../../users";
-import {CommentUpdater, IBlog, IComment} from "../../../models";
-import * as faker from "faker";
-import {createBlog} from "../helpers/blog";
+import {IComment} from "../../../models";
 
 describe('comment update', () => {
-    beforeAll((done) => {
-        db.once('open', function() {
-            done();
-        });
-    });
-    afterAll(() => {
-        db.close();
-    });
-
     it('should get blog comments list', async () => {
         const [blog, comment] = await createBlogAndComment();
         const response = await request.get(getApiUrl(Routes.getCommentsByBlog, { blogId: blog.id })).send();

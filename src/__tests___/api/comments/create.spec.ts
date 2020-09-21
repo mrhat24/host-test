@@ -1,4 +1,3 @@
-import {db} from "../../../db";
 import {Blog, CommentCreator, iComment} from "../../../models";
 import faker from "faker";
 import {request} from "../helpers/supertest";
@@ -8,15 +7,6 @@ import {createBlog} from "../helpers/blog";
 import {Types} from "mongoose";
 
 describe('comment create', () => {
-    beforeAll((done) => {
-        db.once('open', function() {
-            done();
-        });
-    });
-    afterAll(() => {
-        db.close();
-    });
-
     it('should create new comment', async () => {
         const blog = await createBlog()
         const commentCreator: CommentCreator = {

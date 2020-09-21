@@ -4,18 +4,9 @@ import {Blog, BlogUpdater, iBlog} from "../../../models";
 import faker from 'faker';
 import {getAuth} from "../helpers/auth";
 import {adminUser, managerUser} from "../../../users";
-import {db} from "../../../db";
 import {Types} from "mongoose";
 
 describe('blog update', () => {
-    beforeAll((done) => {
-        db.once('open', function() {
-            done();
-        });
-    });
-    afterAll(() => {
-        db.close();
-    });
 
     it('should update existent blog', async () => {
         const blog = new Blog({

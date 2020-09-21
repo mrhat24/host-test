@@ -8,15 +8,6 @@ import {db} from "../../../db";
 import {Types} from "mongoose";
 
 describe('blog delete', () => {
-    beforeAll((done) => {
-        db.once('open', function() {
-            done();
-        });
-    });
-    afterAll(() => {
-        db.close();
-    });
-
     it('should delete existent blog', async () => {
         const blog = new Blog({
             author: adminUser.login,

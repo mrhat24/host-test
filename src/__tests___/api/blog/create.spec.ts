@@ -4,17 +4,8 @@ import {BlogCreator, IBlog} from "../../../models";
 import faker from 'faker';
 import {getAuth} from "../helpers/auth";
 import {adminUser} from "../../../users";
-import {db} from "../../../db";
 
 describe('blog create', () => {
-    beforeAll((done) => {
-        db.once('open', function() {
-            done();
-        });
-    });
-    afterAll(() => {
-        db.close();
-    });
     it('should create new blog', async () => {
         const blogCreator: BlogCreator = {
             content: faker.lorem.text(200),

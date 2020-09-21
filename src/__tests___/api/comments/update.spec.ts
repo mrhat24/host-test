@@ -1,4 +1,3 @@
-import {db} from "../../../db";
 import {request} from "../helpers/supertest";
 import {getApiUrl, Routes} from "../../../routes";
 import {getAuth} from "../helpers/auth";
@@ -9,15 +8,6 @@ import {CommentUpdater} from "../../../models";
 import * as faker from "faker";
 
 describe('comment update', () => {
-    beforeAll((done) => {
-        db.once('open', function() {
-            done();
-        });
-    });
-    afterAll(() => {
-        db.close();
-    });
-
     it('should update comment', async () => {
         const [blog, comment] = await createBlogAndComment();
         const commentUpdater: CommentUpdater = {

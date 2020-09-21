@@ -1,4 +1,3 @@
-import {db} from "../../../db";
 import {request} from "../helpers/supertest";
 import {getApiUrl, Routes} from "../../../routes";
 import {getAuth} from "../helpers/auth";
@@ -7,15 +6,6 @@ import {Types} from "mongoose";
 import {managerUser} from "../../../users";
 
 describe('comment delete', () => {
-    beforeAll((done) => {
-        db.once('open', function() {
-            done();
-        });
-    });
-    afterAll(() => {
-        db.close();
-    });
-
     it('should delete comment', async () => {
         const [blog, comment] = await createBlogAndComment();
         const url = getApiUrl(Routes.deleteComment, {blogId: blog.id, id: comment.id});
