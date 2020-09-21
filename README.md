@@ -1,5 +1,11 @@
 # Blog service
 
+## Ссылки
+
+`api` - http://localhost:3000
+
+`swagger` - http://localhost:3000/swagger
+
 ## Запуск
 
 1. `npm i`

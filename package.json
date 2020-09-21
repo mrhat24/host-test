@@ -9,7 +9,7 @@
     "test": "jest",
     "docker:dev:up": "cd dev && docker-compose up -d",
     "docker:dev:down": "cd dev && docker-compose down",
-    "docker:prod:up": "docker-compose up -d",
+    "docker:prod:up": "docker-compose up -d --build",
     "docker:prod:down": "docker-compose down"
   },
   "license": "MIT",

@@ -12,8 +12,6 @@ services:
       - MONGO_INITDB_DATABASE=project
     volumes:
       - ./data/db_prod:/data/db
-    ports:
-      - 27017:27017
   service:
     build: .
     container_name: blogService
