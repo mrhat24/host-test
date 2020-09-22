@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
-import {evninronment} from "./env";
+import {environment} from "./env";
 
-mongoose.connect(evninronment.mongoUrl, {useUnifiedTopology: true});
+mongoose.connect(environment.mongoUrl(), {useUnifiedTopology: true});
 export const db = mongoose.connection;
-

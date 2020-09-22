@@ -5,9 +5,11 @@ import faker from 'faker';
 import {getAuth} from "../helpers/auth";
 import {adminUser, managerUser} from "../../../users";
 import {Types} from "mongoose";
+import {initDb} from "../helpers/db";
+import {HttpCodes} from "../../../utils/api";
 
 describe('blog update', () => {
-
+    initDb('blogUpdate');
     it('should update existent blog', async () => {
         const blog = new Blog({
             author: adminUser.login,
@@ -23,7 +25,7 @@ describe('blog update', () => {
             .put(Routes.updateBlog.replace(':id', blog.id))
             .set(getAuth())
             .send(blogUpdater);
-        expect(response.status).toBe(201);
+        expect(response.status).toBe(HttpCodes.Ok);
         const updatedBlog: ormBlog = response.body;
         expect(updatedBlog.title).toEqual(blogUpdater.title);
         expect(updatedBlog._id).toEqual(blog._id.toString());
@@ -45,7 +47,7 @@ describe('blog update', () => {
             .put(Routes.updateBlog.replace(':id', blog.id))
             .set(getAuth(managerUser))
             .send(blogUpdater);
-        expect(response.status).toBe(403);
+        expect(response.status).toBe(HttpCodes.Forbidden);
     });
 
     it('should not update blog without authorization', async () => {
@@ -62,7 +64,7 @@ describe('blog update', () => {
         const response = await request
             .put(Routes.updateBlog.replace(':id', blog.id))
             .send(blogUpdater);
-        expect(response.status).toBe(401);
+        expect(response.status).toBe(HttpCodes.Unauthorized);
     });
 
     it('should not update not existent blog', async () => {
@@ -75,6 +77,6 @@ describe('blog update', () => {
             .put(Routes.updateBlog.replace(':id', randomObjectId.toHexString()))
             .set(getAuth(adminUser))
             .send(blogUpdater);
-        expect(response.status).toBe(404);
+        expect(response.status).toBe(HttpCodes.NotFound);
     });
 });

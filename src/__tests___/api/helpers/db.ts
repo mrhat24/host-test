@@ -1,10 +1,17 @@
-import {db} from "../../../db";
+import mongoose from "mongoose";
+import {environment} from "../../../env";
 
-beforeAll((done) => {
-    db.once('open', function() {
+export const initDb = (dbName: string) => {
+    mongoose.connect(environment.mongoUrl(dbName), {useUnifiedTopology: true});
+    const db = mongoose.connection;
+    beforeAll((done) => {
+        db.once('open', function() {
+            done();
+        });
+    });
+
+    afterAll(async (done) => {
+        await db.close();
         done();
     });
-});
-afterAll(() => {
-    db.close();
-});
+};

@@ -5,7 +5,6 @@ const blogSchema = new Schema({
     author: String,
     content: String,
     date: { type: Date, default: Date.now },
-    commentIds: [String],
 });
 
 export interface BlogCreator {
@@ -17,7 +16,6 @@ export interface IBlog extends BlogCreator {
     _id?: string;
     author: string;
     date: Date;
-    commentIds: string[];
 }
 
 export interface BlogUpdater {

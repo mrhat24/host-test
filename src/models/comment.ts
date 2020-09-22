@@ -4,6 +4,7 @@ const commentSchema = new Schema({
     author: String,
     message: String,
     date: { type: Date, default: Date.now },
+    blogId: String,
 });
 
 export interface CommentCreator {
@@ -15,8 +16,8 @@ export interface IComment {
     author: string;
     message: string;
     date: Date;
+    blogId: string;
 }
-
 
 export interface CommentUpdater {
     message?: string;

@@ -5,8 +5,11 @@ import faker from 'faker';
 import {getAuth} from "../helpers/auth";
 import {adminUser} from "../../../users";
 import {Types} from "mongoose";
+import {HttpCodes} from "../../../utils/api";
+import {initDb} from "../helpers/db";
 
 describe('blog delete', () => {
+    initDb('blogDelete');
     it('should delete existent blog', async () => {
         const blog = new Blog({
             author: adminUser.login,
@@ -18,7 +21,7 @@ describe('blog delete', () => {
             .delete(Routes.deleteBlog.replace(':id', blog.id))
             .set(getAuth())
             .send();
-        expect(response.status).toBe(200);
+        expect(response.status).toBe(HttpCodes.Ok);
         const exists = await Blog.exists({_id: blog.id});
         expect(exists).toEqual(false);
     });
@@ -29,7 +32,7 @@ describe('blog delete', () => {
             .delete(Routes.deleteBlog.replace(':id', randomObjectId.toHexString()))
             .set(getAuth())
             .send();
-        expect(response.status).toBe(404);
+        expect(response.status).toBe(HttpCodes.NotFound);
     });
 
     it('should not delete blog without authorization', async () => {
@@ -42,6 +45,6 @@ describe('blog delete', () => {
         const response = await request
             .delete(Routes.deleteBlog.replace(':id', blog.id))
             .send();
-        expect(response.status).toBe(401);
+        expect(response.status).toBe(HttpCodes.Unauthorized);
     });
 });

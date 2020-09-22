@@ -1,12 +1,15 @@
 import {Blog, CommentCreator, ormComment} from "../../../models";
 import faker from "faker";
 import {request} from "../helpers/supertest";
-import {getApiUrl, Routes} from "../../../routes";
+import {Routes} from "../../../routes";
 import {getAuth} from "../helpers/auth";
 import {createBlog} from "../helpers/blog";
 import {Types} from "mongoose";
+import {getApiUrl, HttpCodes} from "../../../utils/api";
+import {initDb} from "../helpers/db";
 
 describe('comment create', () => {
+    initDb('commentsCreate');
     it('should create new comment', async () => {
         const blog = await createBlog()
         const commentCreator: CommentCreator = {
@@ -18,13 +21,15 @@ describe('comment create', () => {
             .set(getAuth())
             .send(commentCreator);
 
-        expect(response.status).toBe(201);
+        expect(response.status).toBe(HttpCodes.Created);
         const comment: ormComment = response.body;
         expect(comment.message).toEqual(commentCreator.message);
 
-        const changedBlog = await Blog.findById({_id: blog.id});
+        expect(comment.blogId).toEqual(blog.id);
 
-        expect(changedBlog.commentIds.includes(comment._id)).toBe(true);
+        expect(response.headers['location']).not.toBeUndefined();
+        expect(response.headers['location'].includes(blog._id)).toEqual(true);
+        expect(response.headers['location'].includes(comment._id)).toEqual(true);
     });
 
     it('should not create new comment for not existent blog', async () => {
@@ -37,7 +42,7 @@ describe('comment create', () => {
             .set(getAuth())
             .send(commentCreator);
 
-        expect(response.status).toBe(404);
+        expect(response.status).toBe(HttpCodes.NotFound);
     });
 
     it('should not create new comment without authorization', async () => {
@@ -49,6 +54,6 @@ describe('comment create', () => {
             .post(url)
             .send(commentCreator);
 
-        expect(response.status).toBe(401);
+        expect(response.status).toBe(HttpCodes.Unauthorized);
     });
 });

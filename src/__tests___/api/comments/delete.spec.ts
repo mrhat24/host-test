@@ -1,11 +1,14 @@
 import {request} from "../helpers/supertest";
-import {getApiUrl, Routes} from "../../../routes";
+import {Routes} from "../../../routes";
 import {getAuth} from "../helpers/auth";
 import {createBlogAndComment} from "../helpers/comment";
 import {Types} from "mongoose";
 import {managerUser} from "../../../users";
+import {getApiUrl, HttpCodes} from "../../../utils/api";
+import {initDb} from "../helpers/db";
 
 describe('comment delete', () => {
+    initDb('commentsDelete');
     it('should delete comment', async () => {
         const [blog, comment] = await createBlogAndComment();
         const url = getApiUrl(Routes.deleteComment, {blogId: blog.id, id: comment.id});
@@ -13,7 +16,7 @@ describe('comment delete', () => {
             .delete(url)
             .set(getAuth())
             .send();
-        expect(response.status).toBe(200);
+        expect(response.status).toBe(HttpCodes.Ok);
     });
 
     it('should not delete other user comment', async () => {
@@ -23,7 +26,7 @@ describe('comment delete', () => {
             .delete(url)
             .set(getAuth(managerUser))
             .send();
-        expect(response.status).toBe(403);
+        expect(response.status).toBe(HttpCodes.Forbidden);
     });
 
     it('should not delete comment without authorization', async () => {
@@ -32,7 +35,7 @@ describe('comment delete', () => {
         const response = await request
             .delete(url)
             .send();
-        expect(response.status).toBe(401);
+        expect(response.status).toBe(HttpCodes.Unauthorized);
     });
 
     it('should not delete not existent comment', async () => {
@@ -42,7 +45,7 @@ describe('comment delete', () => {
             .delete(url)
             .set(getAuth())
             .send();
-        expect(response.status).toBe(404);
+        expect(response.status).toBe(HttpCodes.NotFound);
     });
 
     it('should not delete not existent blog comment', async () => {
@@ -52,6 +55,6 @@ describe('comment delete', () => {
             .delete(url)
             .set(getAuth())
             .send();
-        expect(response.status).toBe(404);
+        expect(response.status).toBe(HttpCodes.NotFound);
     });
 });

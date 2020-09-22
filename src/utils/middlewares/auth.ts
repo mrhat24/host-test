@@ -1,5 +1,6 @@
 import {users} from "../../users";
 import {Request, Response, NextFunction} from 'express';
+import {HttpCodes} from "../api";
 
 const loginParamName = '__login';
 
@@ -7,7 +8,7 @@ export const authMiddleware = function (req: Request, res: Response, next: NextF
     const authHeader = req.headers.authorization;
     if (!authHeader) {
         res.setHeader('WWW-Authenticate', 'Basic');
-        res.status(401).send('You are not authenticated!');
+        res.status(HttpCodes.Unauthorized).send('You are not authenticated!');
         return;
     }
     const authData = authHeader.replace("Basic ", "");
@@ -20,7 +21,7 @@ export const authMiddleware = function (req: Request, res: Response, next: NextF
         next(); // authorized
     } else {
         res.setHeader('WWW-Authenticate', 'Basic');
-        res.status(401).send('You are not authenticated!');
+        res.status(HttpCodes.Unauthorized).send('You are not authenticated!');
     }
 };
 

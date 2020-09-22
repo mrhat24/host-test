@@ -4,9 +4,8 @@ import * as swaggerDocument from '../swagger/swagger.json';
 import {BlogController} from "./controllers/blogController";
 import {Routes} from "./routes";
 import {Express} from "express";
-import {blogCommentMiddleware, blogEditMiddleware} from "./utils/middlewares/blog";
 import {CommentController} from "./controllers/commentController";
-import {commentEditMiddleware} from "./utils/middlewares/comment";
+import {errorHandlerMiddleware} from "./utils/middlewares/error";
 
 const blogController = new BlogController();
 const commentController = new CommentController();
@@ -15,13 +14,17 @@ export const appRouter = (app: Express) => {
     app.get('/', (req, res) => res.send('Blog Rest API Service'));
 
     /* comment */
-    app.post(Routes.crateComment, [authMiddleware, blogCommentMiddleware], commentController.create);
-    app.delete(Routes.deleteComment, [authMiddleware, blogCommentMiddleware, commentEditMiddleware], commentController.delete);
-    app.put(Routes.updateComment, [authMiddleware, blogCommentMiddleware, commentEditMiddleware], commentController.update);
-    app.get(Routes.getCommentsByBlog, [blogCommentMiddleware], commentController.list);
+    app.post(Routes.crateComment, [authMiddleware], commentController.create);
+    app.delete(Routes.deleteComment, [authMiddleware], commentController.delete);
+    app.put(Routes.updateComment, [authMiddleware], commentController.update);
+    app.get(Routes.getCommentsByBlog, commentController.list);
+    app.get(Routes.getComment, commentController.get);
     /* blog */
     app.post(Routes.createBlog, [authMiddleware], blogController.create);
-    app.put(Routes.updateBlog, [authMiddleware, blogEditMiddleware], blogController.update);
-    app.delete(Routes.deleteBlog, [authMiddleware, blogEditMiddleware], blogController.delete);
+    app.put(Routes.updateBlog, [authMiddleware], blogController.update);
+    app.delete(Routes.deleteBlog, [authMiddleware], blogController.delete);
     app.get(Routes.getBlogList, blogController.list);
+    app.get(Routes.getBlog, blogController.get);
+
+    app.use(errorHandlerMiddleware);
 };
