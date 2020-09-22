@@ -1,4 +1,4 @@
-import {Blog, CommentCreator, ormComment} from "../../../models";
+import {CommentCreator, ormComment} from "../../../models";
 import faker from "faker";
 import {request} from "../helpers/supertest";
 import {Routes} from "../../../routes";
