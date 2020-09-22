@@ -1,7 +1,7 @@
 import {Response} from "express";
 import {ormBlog, ormComment} from "../models";
 import {HandledError} from "../utils/handledError";
-import {HttpCodes} from "../utils/api";
+import {HttpCodes} from "../utils/http";
 
 export interface SuccessResponseOptions {
     headers?: { [key: string]: string };

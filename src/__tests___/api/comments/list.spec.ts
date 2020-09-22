@@ -3,8 +3,9 @@ import {Routes} from "../../../routes";
 import {createBlogAndComment} from "../helpers/comment";
 import {Types} from "mongoose";
 import {IComment} from "../../../models";
-import {getApiUrl, HttpCodes} from "../../../utils/api";
+import {getApiUrl} from "../../../utils/api";
 import {initDb} from "../helpers/db";
+import {HttpCodes} from "../../../utils/http";
 
 describe('comment update', () => {
     initDb('commentsList');

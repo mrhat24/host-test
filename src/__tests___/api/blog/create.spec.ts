@@ -4,8 +4,8 @@ import {BlogCreator, IBlog} from "../../../models";
 import faker from 'faker';
 import {getAuth} from "../helpers/auth";
 import {adminUser} from "../../../users";
-import {HttpCodes} from "../../../utils/api";
 import {initDb} from "../helpers/db";
+import {HttpCodes} from "../../../utils/http";
 
 describe('blog create', () => {
     initDb('blogCreate');

@@ -3,8 +3,8 @@ import {Blog, Comment, CommentCreator, CommentUpdater, IComment} from "../models
 import {validateModel} from "../utils/validation";
 import check from "check-types";
 import {HandledError} from "../utils/handledError";
-import {HttpCodes} from "../utils/api";
 import {isCommentEditable} from "../controllers/helpers";
+import {HttpCodes} from "../utils/http";
 
 @Path('')
 export class CommentService {

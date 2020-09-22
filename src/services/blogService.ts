@@ -4,7 +4,7 @@ import {validateModel} from "../utils/validation";
 import check from "check-types";
 import {isBlogEditable} from "../controllers/helpers";
 import {HandledError} from "../utils/handledError";
-import {HttpCodes} from "../utils/api";
+import {HttpCodes} from "../utils/http";
 
 
 @Path('')

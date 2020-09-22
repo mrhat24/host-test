@@ -2,9 +2,10 @@ import {request} from "../helpers/supertest";
 import {Routes} from "../../../routes";
 import {IBlog} from "../../../models";
 import {createBlog} from "../helpers/blog";
-import {getApiUrl, HttpCodes} from "../../../utils/api";
+import {getApiUrl} from "../../../utils/api";
 import {Types} from "mongoose";
 import {initDb} from "../helpers/db";
+import {HttpCodes} from "../../../utils/http";
 
 describe('blog item', () => {
     initDb('blogGet');

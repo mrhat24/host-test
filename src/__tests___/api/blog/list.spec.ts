@@ -2,7 +2,7 @@ import {request} from "../helpers/supertest";
 import {Routes} from "../../../routes";
 import {IBlog} from "../../../models";
 import {initDb} from "../helpers/db";
-import {HttpCodes} from "../../../utils/api";
+import {HttpCodes} from "../../../utils/http";
 
 describe('blog list', () => {
     initDb('blogList');

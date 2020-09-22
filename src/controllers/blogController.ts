@@ -1,9 +1,10 @@
 import {Request, Response} from 'express';
 import {BlogService} from "../services/blogService";
 import {getLogin} from "../utils/middlewares/auth";
-import {getApiUrl, HttpCodes} from "../utils/api";
+import {getApiUrl} from "../utils/api";
 import {Routes} from "../routes";
 import {successResponse} from "./helpers";
+import {HttpCodes} from "../utils/http";
 
 const blogService = new BlogService();
 

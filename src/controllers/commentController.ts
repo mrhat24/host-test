@@ -1,10 +1,11 @@
 import {Request, Response} from "express";
 import {getLogin} from "../utils/middlewares/auth";
 import {CommentService} from "../services/commentService";
-import {getApiUrl, HttpCodes} from "../utils/api";
+import {getApiUrl} from "../utils/api";
 import {Routes} from "../routes";
 import {HandledError} from "../utils/handledError";
 import {successResponse} from "./helpers";
+import {HttpCodes} from "../utils/http";
 
 const commentService = new CommentService();
 

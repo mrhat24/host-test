@@ -1,6 +1,6 @@
 import {users} from "../../users";
 import {Request, Response, NextFunction} from 'express';
-import {HttpCodes} from "../api";
+import {HttpCodes} from "../http";
 
 const loginParamName = '__login';
 

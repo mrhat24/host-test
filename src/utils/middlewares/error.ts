@@ -1,5 +1,5 @@
 import {NextFunction, Request, Response} from "express";
-import {HttpCodes} from "../api";
+import {HttpCodes} from "../http";
 
 export const errorHandlerMiddleware = function (err: any, req: Request, res: Response, next: NextFunction) {
     if (!err.statusCode) {

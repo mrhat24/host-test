@@ -5,9 +5,10 @@ import {Routes} from "../../../routes";
 import {getAuth} from "../helpers/auth";
 import {createBlog} from "../helpers/blog";
 import {Types} from "mongoose";
-import {getApiUrl, HttpCodes} from "../../../utils/api";
+import {getApiUrl} from "../../../utils/api";
 import {initDb} from "../helpers/db";
 import {adminUser} from "../../../users";
+import {HttpCodes} from "../../../utils/http";
 
 describe('comment create', () => {
     initDb('commentsCreate');

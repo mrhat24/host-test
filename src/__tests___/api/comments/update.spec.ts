@@ -6,8 +6,9 @@ import {Types} from "mongoose";
 import {adminUser, managerUser} from "../../../users";
 import {CommentUpdater} from "../../../models";
 import * as faker from "faker";
-import {getApiUrl, HttpCodes} from "../../../utils/api";
+import {getApiUrl} from "../../../utils/api";
 import {initDb} from "../helpers/db";
+import {HttpCodes} from "../../../utils/http";
 
 describe('comment update', () => {
     initDb('commentsUpdate');

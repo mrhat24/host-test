@@ -6,7 +6,7 @@ import {getAuth} from "../helpers/auth";
 import {adminUser, managerUser} from "../../../users";
 import {Types} from "mongoose";
 import {initDb} from "../helpers/db";
-import {HttpCodes} from "../../../utils/api";
+import {HttpCodes} from "../../../utils/http";
 
 describe('blog update', () => {
     initDb('blogUpdate');
