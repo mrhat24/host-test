@@ -1,4 +1,4 @@
-import {Blog, BlogCreator, BlogUpdater, IBlog, ormBlog} from "../models";
+import {Blog, BlogCreator, BlogUpdater, IBlog} from "../models";
 import {ContextRequest, DELETE, GET, Path, PathParam, POST, PUT, Security} from "typescript-rest";
 import {validateModel} from "../utils/validation";
 import check from "check-types";
@@ -82,7 +82,7 @@ export class BlogService {
 
     @GET
     @Path('/blogs/:id')
-    public async get(@PathParam('id') id: string): Promise<ormBlog> {
+    public async get(@PathParam('id') id: string): Promise<IBlog> {
         const blog = await Blog.findById(id);
         if (!blog) {
             throw new HandledError(HttpCodes.NotFound);
