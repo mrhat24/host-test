@@ -23,7 +23,7 @@ export class CommentService {
         if (!blog) {
             throw new HandledError(HttpCodes.NotFound);
         }
-        const comment = new Comment(commentCreator);
+        const comment = new Comment({...commentCreator, author});
         comment.blogId = blogId;
         comment.date = new Date();
         await comment.save();

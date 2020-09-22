@@ -3,7 +3,7 @@ import {Routes} from "../../../routes";
 import {getAuth} from "../helpers/auth";
 import {createBlogAndComment} from "../helpers/comment";
 import {Types} from "mongoose";
-import {managerUser} from "../../../users";
+import {adminUser, managerUser} from "../../../users";
 import {CommentUpdater} from "../../../models";
 import * as faker from "faker";
 import {getApiUrl, HttpCodes} from "../../../utils/api";
@@ -22,6 +22,7 @@ describe('comment update', () => {
             .set(getAuth())
             .send(commentUpdater);
         expect(response.status).toBe(HttpCodes.Ok);
+        expect(response.body.author).toEqual(adminUser.login);
     });
 
     it('should not update other user comment', async () => {

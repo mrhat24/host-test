@@ -7,6 +7,7 @@ import {createBlog} from "../helpers/blog";
 import {Types} from "mongoose";
 import {getApiUrl, HttpCodes} from "../../../utils/api";
 import {initDb} from "../helpers/db";
+import {adminUser} from "../../../users";
 
 describe('comment create', () => {
     initDb('commentsCreate');
@@ -26,6 +27,7 @@ describe('comment create', () => {
         expect(comment.message).toEqual(commentCreator.message);
 
         expect(comment.blogId).toEqual(blog.id);
+        expect(comment.author).toEqual(adminUser.login);
 
         expect(response.headers['location']).not.toBeUndefined();
         expect(response.headers['location'].includes(blog._id)).toEqual(true);
