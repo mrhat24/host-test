@@ -6,10 +6,7 @@ module.exports = {
     "<rootDir>/src"
   ],
   testEnvironment: "node",
-  transform: {
-    '^.+\\.ts?$': 'ts-jest',
-  },
-  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.ts?$',
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.js?$',
+  moduleFileExtensions: ['js', 'jsx', 'json', 'node'],
   testTimeout: 10000,
 };
