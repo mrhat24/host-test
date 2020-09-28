@@ -1,6 +1,4 @@
 import {authMiddleware} from "./utils/middlewares/auth";
-import * as swaggerUi from 'swagger-ui-express';
-import * as swaggerDocument from '../swagger/swagger.json';
 import {BlogController} from "./controllers/blogController";
 import {Routes} from "./routes";
 import {CommentController} from "./controllers/commentController";
@@ -9,7 +7,6 @@ import {errorHandlerMiddleware} from "./utils/middlewares/error";
 const blogController = new BlogController();
 const commentController = new CommentController();
 export const appRouter = (app) => {
-    app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
     app.get('/', (req, res) => res.send('Blog Rest API Service'));
 
     /* comment */

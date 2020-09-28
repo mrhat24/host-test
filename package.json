@@ -6,7 +6,6 @@
     "start": "nodemon --exec babel-node src/index.js",
     "build": "babel src --out-dir dist --source-maps inline",
     "serve": "node dist/index.js",
-    "swagger:gen": "swaggerGen -c ./swaggerConfig.json",
     "test": "jest",
     "docker:dev:up": "cd dev && docker-compose up -d",
     "docker:dev:down": "cd dev && docker-compose down",
@@ -24,8 +23,7 @@
     "faker": "5.1.0",
     "jest": "26.4.2",
     "mongoose": "5.10.5",
-    "supertest": "4.0.2",
-    "swagger-ui-express": "4.1.4"
+    "supertest": "4.0.2"
   },
   "devDependencies": {
     "express": "4.17.1",

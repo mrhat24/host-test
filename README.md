@@ -4,13 +4,10 @@
 
 `api` - http://localhost:3000
 
-`swagger` - http://localhost:3000/swagger
-
-## Запуск
+## Запуск в режиме разработки
 
 1. `npm i`
-3. `npm run docker:dev:up`
-3. `npm run swagger:gen`
+2. `npm run docker:dev:up`
 3. `npm run start`
 
 ## Запуск в контейнере
@@ -21,8 +18,8 @@
 
 - `npm run start` - запуск в режиме разработки;
 - `npm run build` - запуск сборки проекта;
+- `npm run serve` - запуск собранного проекта;
 - `npm run test` - запуск тестов;
-- `npm run swagger:gen` - генерация swagger документации;
 - `npm start` - запуск Metro сервера для нативный приложений;
 - `npm run start-clean` - запуск Metro сервера с очисткой кэшей;
 - `npm run docker:dev:up` - запуск окружения для разработки;
